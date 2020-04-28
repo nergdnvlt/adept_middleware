@@ -4,6 +4,8 @@ class Api::V1::FastspringController < ApiController
   def returns
     if params["events"][0]["type"] == "return.created"
       licenses_arr = params["events"][0]["data"]["note"].delete(" ").split(",")
+      # Do something with serial numbers
+      puts licenses_arr
     else
       console.log("No license provided")
     end
