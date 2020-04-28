@@ -1,6 +1,14 @@
 class Api::V1::FastspringController < ApiController
   before_action :account_params, :session_params
 
+  def returns
+    if params["events"][0]["type"] == "return.created"
+      licenses_arr = params["events"][0]["data"]["note"].delete(" ").split(",")
+    else
+      console.log("No license provided")
+    end
+  end
+
   def accounts
     response = conn('accounts', account_payload)
     if response.code == 200
